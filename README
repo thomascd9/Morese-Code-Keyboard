@@ -1,0 +1,11 @@
+Collection of all my efforts to make a morse code keyboard out of an Arduino
+
+morse_simple
+Turns push button input into dots and dashes
+
+rgb_colors
+exhaustive test of colors; they weren't displaying properly for me so I manually
+tested them by visual inspection with brute force approach over rgb colorspace
+
+test1
+hardware test to figure out if wiring worked
