@@ -4,8 +4,8 @@ const int BLUE_LED = 11;
 
 const int BUTTON_PIN = 13;
 
-#define ON LOW
-#define OFF HIGH
+#define ON HIGH
+#define OFF LOW
 #define DEPRESSED HIGH
 
 void setup() {
