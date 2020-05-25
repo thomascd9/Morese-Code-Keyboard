@@ -26,6 +26,7 @@ void setup() {
 
 enum state_t { waiting, reading, dot, dash };
 state_t state = waiting;
+state_t prev_state = reading;
 unsigned long press_start = 0;
 unsigned long read_end = 0;
 String seq = "";
@@ -59,23 +60,26 @@ void loop() {
         Serial.print(morseToChar(seq));
         seq = "";
         state = waiting;
-        //Serial.print('\n');
+        // Serial.print('\n');
       }
     }
   }
 
-//  displayState(state);
-  turnOffAllLEDs();
-  if (state == waiting) {
-    digitalWrite(BLUE_LED, ON);
-  } else if (state == reading) {
-    digitalWrite(GREEN_LED, ON);
-  } else if (state == dot) {
-    digitalWrite(RED_LED, ON);
-  } else if (state == dash) {
-    analogWrite(RED_LED, 50);
-    analogWrite(GREEN_LED, 200);
-    analogWrite(BLUE_LED, 100); 
+  // Update LED if necessary
+  if (prev_state != state) {
+    turnOffAllLEDs();
+    if (state == waiting) {
+      digitalWrite(BLUE_LED, ON);
+    } else if (state == reading) {
+      digitalWrite(GREEN_LED, ON);
+    } else if (state == dot) {
+      digitalWrite(RED_LED, ON);
+    } else if (state == dash) {
+      analogWrite(RED_LED, 50);
+      analogWrite(GREEN_LED, 0);
+      analogWrite(BLUE_LED, 150); 
+    }
+    prev_state = state;
   }
 }
 
@@ -158,10 +162,6 @@ char morseToChar(String seq) {
   } else if (seq == "_____") {
     return '0';
   } else {
-    return '#';
+    return '#'; // Error character
   }
 }
-
-//void displayState(state_t state) {
-//
-//}
