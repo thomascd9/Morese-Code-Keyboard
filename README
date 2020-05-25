@@ -1,5 +1,8 @@
 Collection of all my efforts to make a morse code keyboard out of an Arduino
 
+morse_serial
+Prints out letters to serial based on morse code input. Does not do spaces
+
 morse_simple
 Turns push button input into dots and dashes
 
