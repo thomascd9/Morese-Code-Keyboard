@@ -58,6 +58,9 @@ void loop() {
     } else if (state == reading) {
       if (curr_time > read_end + word_interval) {
         Serial.print(morseToChar(seq));
+        // Arduino Uno does not by default do keyboard emulation
+        //  to use with Arduino Leonardo/ other, change it to Keyboard.print
+        //  and add Keyboard.begin() in setup().
         seq = "";
         state = waiting;
         // Serial.print('\n');
